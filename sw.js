@@ -42,7 +42,7 @@ self.addEventListener('fetch', function (event) {
     // B7. TODO - Respond to the event by opening the cache using the name we gave
     //            above (CACHE_NAME)
     return cache.match(event.request).then((cachedResponse) => {
-      // Return a cached response if we have one
+      // Return cached response
       if (cachedResponse) {
         return cachedResponse;
       }
@@ -50,10 +50,10 @@ self.addEventListener('fetch', function (event) {
       //            Otherwise fetch the resource, add it to the cache, and return
       //            network response.
       return fetch(event.request).then((fetchedResponse) => {
-        // Add the network response to the cache for later visits
+        // Add responce for cache
         cache.put(event.request, fetchedResponse.clone());
 
-        // Return the network response
+        // Return response
         return fetchedResponse;
       });
     });
